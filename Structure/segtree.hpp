@@ -6,51 +6,28 @@ template<typename T>
 struct segtree
 {
 	using F=function<T(T,T)>;
-	
 	int sz;
 	vector<T>seg;
 	const F f;
 	const T m1;
-
-
-	segtree(int n,const F f,const T &m1):f(f),m1(m1)
-	{
-		for(sz=1;sz<n;sz<<=1);
-		seg.assign(2*sz,m1);
-	}
-	void update(int k,const T &x)
-	{
-		k+=sz;
-		seg[k]=x;
-		for(;k>>=1;)seg[k]=f(seg[2*k+0],seg[2*k+1]);
-	}
+	segtree(int n,const F f,const T &m1):f(f),m1(m1){for(sz=1;sz<n;sz<<=1);seg.assign(2*sz,m1);}
+	void update(int k,const T &x){k+=sz;seg[k]=x;for(;k>>=1;)seg[k]=f(seg[2*k+0],seg[2*k+1]);}
 	void set(int k,const T &x){seg[k+sz]=x;}
 	void build(){for(int k=sz-1;k>0;k--)seg[k]=f(seg[2*k+0],seg[2*k+1]);}
-
-
 	T query(int a,int b)
 	{
 		T L=m1,R=m1;
-		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1)
-		{
-			if(a&1)L=f(L,seg[a++]);
-			if(b&1)R=f(seg[--b],R);
-		}
+		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){if(a&1)L=f(L,seg[a++]);if(b&1)R=f(seg[--b],R);}
 		return f(L,R);
 	}
-
-
 	T operator[](const int &k)const{return seg[k+sz];}
-
-
 	template<typename C>
 	int find_subtree(int a,const C &check,T &M,bool type)
 	{
 		for(;a<sz;)
 		{
 			T nxt=type?f(seg[2*a+type],M):f(M,seg[2*a+type]);
-			if(check(nxt))a=2*a+type;
-			else M=nxt,a=2*a+1-type;
+			if(check(nxt))a=2*a+type;else M=nxt,a=2*a+1-type;
 		}
 		return a-sz;
 	}
