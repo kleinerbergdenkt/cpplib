@@ -31,7 +31,8 @@ template<long long Mod>struct modInt
 	constexpr modInt& operator /=(const modInt&r)noexcept
 	{
 		long long a=r.val,b=Mod,u=1,v=0;
-		while(b){
+		while(b)
+		{
 			long long t=a/b;
 			a-=t*b;swap(a,b);
 			u-=t*v;swap(u,v);

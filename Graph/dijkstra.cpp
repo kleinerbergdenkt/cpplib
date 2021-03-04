@@ -10,7 +10,8 @@ void dijkstra()
 {
 	int n,m,s,t;cin>>n>>m>>s>>t;
 	vector<vector<P>>g(n);
-	for(int i=0;i<m;i++){
+	for(int i=0;i<m;i++)
+	{
 		int a,b,cst;cin>>a>>b>>cst;
 		g[a].push_back(make_pair(b,cst));
 	}
@@ -18,13 +19,15 @@ void dijkstra()
 	vector<int>prev(n,-1);
 	priority_queue<P,vector<P>,greater<P>>pq;
 	pq.push(make_pair(dist[s],s));
-	while(!pq.empty())	{
+	while(!pq.empty())
+	{
 		int v=pq.top().second;
 		int d=pq.top().first;
 		pq.pop();
 		if(d>dist[v])continue;		
 		for(auto e:g[v])
-			if(chmin(dist[e.first],dist[v]+e.second)){
+			if(chmin(dist[e.first],dist[v]+e.second))
+			{
 				prev[e.first]=v;
 				pq.push(make_pair(dist[e.first],e.first));
 			}
@@ -33,7 +36,8 @@ void dijkstra()
 	for(int cur=t;cur!=-1;cur=prev[cur])keiro.push_back(cur);
 	reverse(all(keiro));
 	if(dist[t]==1LL<<60)cout<<-1<<spc;
-	else{
+	else
+	{
 		cout<<dist[t]<<spc;
 		int size_of_keiro=keiro.size()-1;
 		cout<<size_of_keiro<<endl;

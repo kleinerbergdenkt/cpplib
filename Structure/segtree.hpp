@@ -31,7 +31,8 @@ struct segtree
 	T query(int a,int b)
 	{
 		T L=m1,R=m1;
-		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){
+		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1)
+		{
 			if(a&1)L=f(L,seg[a++]);
 			if(b&1)R=f(seg[--b],R);
 		}
@@ -45,7 +46,8 @@ struct segtree
 	template<typename C>
 	int find_subtree(int a,const C &check,T &M,bool type)
 	{
-		for(;a<sz;){
+		for(;a<sz;)
+		{
 			T nxt=type?f(seg[2*a+type],M):f(M,seg[2*a+type]);
 			if(check(nxt))a=2*a+type;
 			else M=nxt,a=2*a+1-type;
@@ -60,8 +62,10 @@ struct segtree
 		T L=m1;
 		if(a<=0)return check(f(L,seg[1]))?find_subtree(1,check,L,false):-1;
 		int b=sz;
-		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){
-			if(a&1){
+		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1)
+		{
+			if(a&1)
+			{
 				T nxt=f(L,seg[a]);
 				if(check(nxt))return find_subtree(a,check,L,false);
 				L=nxt;a++;
@@ -77,8 +81,10 @@ struct segtree
 		T R=m1;
 		if(b>=sz)return check(f(seg[1],R))?find_subtree(1,check,R,true):-1;
 		int a=sz;
-		for(b+=sz;a<b;a>>=1,b>>=1){
-			if(b&1){
+		for(b+=sz;a<b;a>>=1,b>>=1)
+		{
+			if(b&1)
+			{
 				T nxt=f(seg[--b],R);
 				if(check(nxt))return find_subtree(b,check,R,true);
 				R=nxt;

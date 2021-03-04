@@ -10,14 +10,16 @@ void dijkstra()
 {
 	int n,m,s,t;cin>>n>>m>>s>>t;
 	vector<vector<P>>g(n);
-	for(int i=0;i<m;i++){
+	for(int i=0;i<m;i++)
+	{
 		int a,b,cst;cin>>a>>b>>cst;
 		g[a].push_back(make_pair(b,cst));
 	}
 	vector<int>dist(n,(1LL<<60));dist[s]=0;
 	priority_queue<P,vector<P>,greater<P>>pq;
 	pq.push(make_pair(dist[s],s));
-	while(!pq.empty())	{
+	while(!pq.empty())
+	{
 		int v=pq.top().second;
 		int d=pq.top().first;
 		pq.pop();
