@@ -3,50 +3,37 @@ using namespace std;
 
 template<long long Mod>struct modInt
 {
-	long long val;
-	constexpr modInt(long long v=0)noexcept:val(v%Mod){if(val<0)val+=Mod;}
+	long long x;
+	constexpr modInt(long long v=0)noexcept:x(v%Mod){if(x<0)x+=Mod;}
+	template<typename T>
+	constexpr modInt(T x_)noexcept:x((x_%=Mod)<0?x_+Mod:x_){}
+	constexpr long long getval()const noexcept {return x;}
 	constexpr getmod(){return Mod;}
-	constexpr modInt operator -()const noexcept{return val?Mod-val:0;}
-	constexpr modInt operator +(const modInt&r)const noexcept{return modInt(*this)+=r;}
-	constexpr modInt operator -(const modInt&r)const noexcept{return modInt(*this)-=r;}
-	constexpr modInt operator *(const modInt&r)const noexcept{return modInt(*this)*=r;}
-	constexpr modInt operator /(const modInt&r)const noexcept{return modInt(*this)/=r;}
-	constexpr modInt& operator +=(const modInt&r)noexcept
+	constexpr modInt operator-()const noexcept{return x?Mod-x:0;}
+	constexpr modInt operator+(const modInt&r)const noexcept{return modInt(*this)+=r;}
+	constexpr modInt operator-(const modInt&r)const noexcept{return modInt(*this)-=r;}
+	constexpr modInt operator*(const modInt&r)const noexcept{return modInt(*this)*=r;}
+	constexpr modInt operator/(const modInt&r)const noexcept{return modInt(*this)/=r;}
+	constexpr modInt&operator+=(const modInt&r)noexcept{x+=r.x;if(x>=Mod)x-=Mod;return *this;}
+	constexpr modInt&operator-=(const modInt&r)noexcept{x-=r.x;if(x<0)x+=Mod;return *this;}
+	constexpr modInt&operator*=(const modInt&r)noexcept{x=x*r.x%Mod;return *this;}
+	constexpr modInt&operator/=(const modInt&r)noexcept
 	{
-		val+=r.val;
-		if(val>=Mod)val-=Mod;
-		return *this;
-	}
-	constexpr modInt& operator -=(const modInt&r)noexcept
-	{
-		val-=r.val;
-		if(val<0)val+=Mod;
-		return *this;
-	}
-	constexpr modInt& operator *=(const modInt&r)noexcept
-	{
-		val=val*r.val%Mod;
-		return *this;
-	}
-	constexpr modInt& operator /=(const modInt&r)noexcept
-	{
-		long long a=r.val,b=Mod,u=1,v=0;
+		long long a=r.x,b=Mod,u=1,v=0;
 		while(b)
 		{
 			long long t=a/b;
 			a-=t*b;swap(a,b);
 			u-=t*v;swap(u,v);
 		}
-		val=val*u%Mod;
-		if(val<0)val+=Mod;
+		x=x*u%Mod;
+		if(x<0)x+=Mod;
 		return *this;
 	}
-	constexpr bool operator ==(const modInt&r)const noexcept{return this->val==r.val;}
-	constexpr bool operator !=(const modInt&r)const noexcept{return this->val!=r.val;}
-	friend constexpr ostream& operator <<(ostream &os,const modInt<Mod>&x)noexcept
-	{
-		return os<<x.val;
-	}
+	constexpr bool operator==(const modInt&r){return this->x==r.x;}
+	constexpr bool operator!=(const modInt&r){return this->x!=r.x;}
+	friend ostream&operator<<(ostream&os,const modInt<Mod>&a){return os<<a.x;}
+	friend istream&operator>>(istream&is,modInt<Mod>&a){long long v;is>>v;a=modInt<Mod>(v);return is;} 
 	friend constexpr modInt<Mod>modpow(const modInt<Mod>&a,long long n)noexcept
 	{
 		if(a==0)return 1;
@@ -56,7 +43,6 @@ template<long long Mod>struct modInt
 		return t;
 	}
 };
-
 
 //const long long mod=1000000007;
 //using mint=modInt<mod>;
