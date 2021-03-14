@@ -6,7 +6,6 @@ template<long long Mod>struct modInt
 	long long x;
 	constexpr modInt(long long v=0)noexcept:x(v%Mod){if(x<0)x+=Mod;}
 	template<typename T>
-	constexpr modInt(T x_)noexcept:x((x_%=Mod)<0?x_+Mod:x_){}
 	constexpr long long getval()const noexcept {return x;}
 	constexpr getmod(){return Mod;}
 	constexpr modInt operator-()const noexcept{return x?Mod-x:0;}
