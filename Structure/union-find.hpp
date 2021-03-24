@@ -7,7 +7,6 @@ struct uni
 	{
 		for(int i=0;i<n;i++)par[i]=i;
 	}
-
 	void init(int n)
 	{
 		par.resize(n);

@@ -29,8 +29,6 @@ struct segtree
 		}
 		return a-sz;
 	}
-
-
 	template<typename C>
 	int find_first(int a,const C &check)
 	{
@@ -48,8 +46,6 @@ struct segtree
 		}
 		return -1;
 	}
-
-
 	template<typename C>
 	int find_last(int b,const C &check)
 	{
