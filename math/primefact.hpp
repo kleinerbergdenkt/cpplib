@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 
 template<typename T>vector<pair<T,T>>prime_factor(T n)
 {
@@ -14,5 +12,3 @@ template<typename T>vector<pair<T,T>>prime_factor(T n)
 	if(n!=1)ret.push_back(make_pair(n,1));
 	return ret;
 }
-
-main(){}

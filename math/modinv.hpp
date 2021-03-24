@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 
 long long modpow(long long a,long long b,long long mod)
 {
@@ -12,5 +10,3 @@ long long modinv(long long a,long long mod)
 {
 	return modpow(a,mod-2,mod);
 }
-
-main(){}

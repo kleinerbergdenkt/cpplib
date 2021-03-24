@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 
 //Segtree
 template<typename T>
@@ -82,5 +80,3 @@ struct segtree
 // find_first(a, check) := [a,x) が check を満たす最初の要素位置 x を返す。
 // find_last(b, check) := [x,b) が check を満たす最後の要素位置 x を返す。
 // for example : segtree<int>seg(n,[](int a,int b){return min(a,b);},INT32_MAX);
-
-main(){}

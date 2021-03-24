@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 
 //union-find
 struct uni
@@ -31,4 +29,3 @@ struct uni
 	int size(int x){return siz[root(x)];}
 };
 
-main(){}

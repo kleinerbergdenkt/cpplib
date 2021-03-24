@@ -1,6 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-
 template<long long Mod>struct modInt
 {
 	long long x;
@@ -45,5 +42,3 @@ template<long long Mod>struct modInt
 
 //const long long mod=1000000007;
 //using mint=modInt<mod>;
-
-main(){}

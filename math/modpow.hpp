@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
 
 long long modpow(long long a,long long b,long long mo)
 {
@@ -7,5 +5,3 @@ long long modpow(long long a,long long b,long long mo)
 	while(b){r=r*((b%2)?a:1)%mo;a=a*a%mo;b>>=1;}
 	return r;
 }
-
-main(){}
