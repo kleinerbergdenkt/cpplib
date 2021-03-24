@@ -51,11 +51,10 @@ namespace gengar
 	#define _rep(i,n) repi(i,0,n)
 	#define repi(i,a,b) for(int i=(a),__SIZE##_=(b);i<__SIZE##_;i++)
 	#define rep(...) _overload3(__VA_ARGS__,repi,_rep,)(__VA_ARGS__)
-	#define rrep(i,n) for(int i=1,__SIZE##_=(n);i<__SIZE##_;i++)
-	#define repp(i,n) for(int i=0,__SIZE##_=(n);i<=__SIZE##_;i++)
-	#define per(i,n) for(int i=(n)-1;i>=0;i--)
-	#define pper(i,n) for(int i=(n)-1;i>=1;i--)
-	#define perr(i,n) for(int i=(n);i>=0;i--)
+	#define _daolrevo3(_1,_2,_3,name,...) name
+	#define _per(i,n) peri(i,n,0)
+	#define peri(i,a,b) for(int i=(a),__SIZE##_=(b);i>=__SIZE##_;i--)
+	#define per(...) _daolrevo3(__VA_ARGS__,peri,_per,)(__VA_ARGS__)
 	#define Bit(n) (1LL<<(n))
 	#define myceil(a,b) ((a)+((b)-1))/(b)
 	#define scale(n) cout<<fixed<<setprecision(n)
@@ -70,7 +69,7 @@ namespace gengar
 	void dNo(){puts("No");exit(0);}
 	int gcd(int a,int b){return b?gcd(b,a%b):a;}
 	int lcm(int a,int b){return a/gcd(a,b)*b;}
-	int fact(int n,int m){int f=n;pper(i,n){f*=i;f%=m;}return f;}
+	int fact(int n,int m){int f=n;for(int i=n-1;i>=1;i--){f*=i;f%=m;}return f;}
 	template<class T>int chmin(T&a,const T&b){if(b<a){a=b;return 1;}return 0;}
 	template<class T>int chmax(T&a,const T&b){if(a<b){a=b;return 1;}return 0;}
 	const int inf=Bit(60);
