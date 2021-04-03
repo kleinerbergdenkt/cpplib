@@ -1,5 +1,5 @@
 
-//Fenwicktree
+//Fenwicktree(1-indexed)
 template<typename T>
 struct Fw
 {
@@ -9,7 +9,7 @@ struct Fw
 	T sum(int i)
 	{
 		T ans=0;
-		for(;i>0;i-=i&-1)ans+=fw[i];
+		for(;i>0;i-=i&-i)ans+=fw[i];
 		return ans;
 	}
 	void add(int i,T a)
@@ -21,7 +21,7 @@ struct Fw
 	{
 		if(k<=0)return 0;
 		int ret=0,i=1;
-		for(;(i<<1)<=n;)i<<=1;
+		for(;(i<<1)<=n;i<<=1);
 		for(;i;i>>=1)if(ret+i<=n&&fw[ret+i]<k)k-=fw[ret+=i];
 		return (ret+1);
 	}
