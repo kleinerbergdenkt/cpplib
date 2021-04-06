@@ -20,6 +20,7 @@ void bfs(int h,int w,int sy,int sx,int gy,int gx)
 		for(int i=0;i<4;i++)
 		{
 			int ny=y+dy[i],nx=x+dx[i];
+			if(ny<0||h<=ny||nx<0||w<=nx)continue;
 			if(maze[ny][nx]=='.'&&dist[ny][nx]==-1)
 			{
 				dist[ny][nx]=-~dist[y][x];
