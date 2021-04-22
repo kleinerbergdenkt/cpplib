@@ -40,6 +40,6 @@ struct bheap
 		}
 	}
 	long getmin(){return _a[1];}
-	long siz(){return _a.size();}
+	long siz(){return _a.size()-1;}
 	void cl(){_a.clear();_a.push_back(0L);}
 };
