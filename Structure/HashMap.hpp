@@ -3,13 +3,12 @@
 struct hmap
 {
 	vector<vector<pair<string,int>>>l_;
-	vector<bool>isuse;
-	hmap(){isuse.assign(10000,0);l_.resize(10000,vector<pair<string,int>>(1));}
-	int gethash(string key){int r=0;for(int i=0;i<key.length();i++)r+=key[i];return r%10000;}
+	hmap(){l_.resize(10000,vector<pair<string,int>>(0));}
+	int gethash(string key){int r=0;for(int i=0;i<key.length();i++)r+=key[i];return r%10000*17%10000;}
 	void put(string key,int val)
 	{
 		int id=gethash(key);
-		if(!isuse[id])l_[id][0]=make_pair(key,val),isuse[id]=1;
+		if(l_[id].empty())l_[id].push_back(make_pair(key,val));
 		else
 		{
 			auto&ar=l_[id];
@@ -24,7 +23,7 @@ struct hmap
 	int get(string key)
 	{
 		int id=gethash(key);
-		if(!isuse[id])return -1;
+		if(l_[id].empty())return -1;
 		else
 		{
 			auto&ar=l_[id];
@@ -39,7 +38,7 @@ struct hmap
 	void rm(string key)
 	{
 		int id=gethash(key);
-		if(!isuse[id])return;
+		if(l_[id].empty())return;
 		auto&ar=l_[id];
 		for(int i=0;i<ar.size();i++)
 		{
@@ -47,5 +46,4 @@ struct hmap
 			if(pr.first==key){ar.erase(ar.begin()+i);break;}
 		}
 	}
-	bool use(string key){return isuse[gethash(key)]?1:0;}
 };
