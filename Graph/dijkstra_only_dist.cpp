@@ -3,10 +3,8 @@
 #include<queue>
 using namespace std;
 #define int long long
-#define all(x) x.begin(),x.end()
 #define P pair<int,int>
-#define spc ' '
-template<class T>int chmin(T &a,const T &b){if(b<a){a=b;return 1;}return 0;}
+template<class T>int chmin(T&a,const T&b){if(b<a){a=b;return 1;}return 0;}
 
 void dijkstra()
 {
@@ -22,15 +20,12 @@ void dijkstra()
 	pq.push(make_pair(dist[s],s));
 	while(!pq.empty())
 	{
-		int v=pq.top().second;
-		int d=pq.top().first;
+		auto[d,v]=pq.top();
 		pq.pop();
-		if(d>dist[v])continue;		
-		for(auto e:g[v])
-			if(chmin(dist[e.first],dist[v]+e.second))
-				pq.push(make_pair(dist[e.first],e.first));
+		if(d>dist[v])continue;
+		for(auto e:g[v])if(chmin(dist[e.first],dist[v]+e.second)) pq.push(make_pair(dist[e.first],e.first));
 	}
-	cout<<(dist[t]==1LL<<60?-1:dist[t])<<spc;
+	cout<<(dist[t]==1LL<<60?-1:dist[t])<<' ';
 }
 
 main(){dijkstra();}
