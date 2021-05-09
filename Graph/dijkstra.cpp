@@ -4,10 +4,8 @@
 #include<queue>
 using namespace std;
 #define int long long
-#define all(x) x.begin(),x.end()
 #define P pair<int,int>
-#define spc ' '
-template<class T>int chmin(T &a,const T &b){if(b<a){a=b;return 1;}return 0;}
+template<class T>int chmin(T&a,const T&b){if(b<a){a=b;return 1;}return 0;}
 
 void dijkstra()
 {
@@ -24,27 +22,25 @@ void dijkstra()
 	pq.push(make_pair(dist[s],s));
 	while(!pq.empty())
 	{
-		int v=pq.top().second;
-		int d=pq.top().first;
+		auto[d,v]=pq.top();
 		pq.pop();
-		if(d>dist[v])continue;		
-		for(auto e:g[v])
-			if(chmin(dist[e.first],dist[v]+e.second))
-			{
-				prev[e.first]=v;
-				pq.push(make_pair(dist[e.first],e.first));
-			}
+		if(d>dist[v])continue;
+		for(auto e:g[v])if(chmin(dist[e.first],dist[v]+e.second))
+		{
+			prev[e.first]=v;
+			pq.push(make_pair(dist[e.first],e.first));
+		}
 	}
 	vector<int>keiro;
 	for(int cur=t;cur!=-1;cur=prev[cur])keiro.push_back(cur);
-	reverse(all(keiro));
-	if(dist[t]==1LL<<60)cout<<-1<<spc;
+	reverse(keiro.begin(),keiro.end());
+	if(dist[t]==1LL<<60)cout<<-1<<' ';
 	else
 	{
-		cout<<dist[t]<<spc;
+		cout<<dist[t]<<' ';
 		int size_of_keiro=keiro.size()-1;
 		cout<<size_of_keiro<<endl;
-		for(int i=0;i<size_of_keiro;i++)cout<<keiro[i]<<spc<<keiro[i+1]<<endl;
+		for(int i=0;i<size_of_keiro;i++)cout<<keiro[i]<<' '<<keiro[i+1]<<endl;
 	}
 }
 
