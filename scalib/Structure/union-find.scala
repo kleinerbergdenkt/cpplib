@@ -1,3 +1,5 @@
+
+//union-find
 class uni(val n:Int)
 {
 	private var par=new Array[Int](n);for(i<-0 until n)par(i)=i

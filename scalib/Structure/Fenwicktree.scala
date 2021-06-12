@@ -1,3 +1,5 @@
+
+//Fenwicktree(1-indexed)
 class FwLong(val n:Long=0L)
 {
 	private var fw=new Array[Long]((n+1).toInt)
