@@ -13,7 +13,6 @@ object Main
 {
 	def main(args:Array[String]):Unit=
 	{
-		//val scanner=new FastScanner(System.in)
 		val allin=io.Source.stdin.getLines().mkString("\n").split(" ")
 		solve(/*args*/)
 		System.out.flush()
@@ -22,110 +21,6 @@ object Main
 	{
 		
 	}
-	final class FastScanner(in:InputStream)
-	{
-		private val buf=Array.ofDim[Byte](4*1024)
-		private var(a,b)=(0,0)
-		@tailrec
-		def nextByte():Byte=
-		{
-			if(a<b)
-			{
-				val b=buf(a)
-				a+=1
-				b
-			}
-			else
-			{
-				b=in.read(buf)
-				if(b<0){throw new EOFException()}else{a=0;nextByte()}
-			}
-		}
-		@tailrec
-		def hasNext:Boolean=
-		{
-			if(a<b)true
-			else if(b<0)true
-			else
-			{
-				b=in.read(buf)
-				a=0
-				hasNext
-			}
-		}
-		@tailrec
-		def nextLong(negate:Boolean=false):Long=
-		{
-			var c=nextChar()
-			if(c=='-'){nextLong(negate=true)}
-			else if(!c.isDigit){nextLong()}
-			else
-			{
-				var res=0L
-				do
-				{
-					val res2=10*res+(c-'0')
-					if(res2>=res)res=res2 else throw new ArithmeticException(s"long overflow")
-					c=if(hasNext)nextChar()else'\u0000'
-				}while(c.isDigit)
-				if(!c.isDigit){a-=1}
-				if(negate)negateExact(res)else res
-			}
-		}
-		@tailrec
-		def nextLine(sb:java.lang.StringBuilder=new java.lang.StringBuilder):String=
-		{
-			if(!hasNext)sb.toString()else
-			{
-				nextChar()match
-				{
-					case '\n'=>
-						if(sb.length==0||sb.charAt(sb.length-1)!='\r')sb.toString()
-						else sb.substring(0,sb.length-1)
-					case c=>nextLine(sb.append(c))
-				}
-			}
-		}
-		def nextInt():Int=toIntExact(nextLong())
-		def nextChar():Char=nextByte().toChar
-		def nextToken(isDelimiter:Char=>Boolean=_.isWhitespace):String=
-		{
-			@tailrec
-			def goToWordStart():Option[Char]=
-			{
-				if(!hasNext)None else
-				{
-					val c=nextChar()
-					if(!isDelimiter(c))Some(c)else goToWordStart()
-				}
-			}
-			goToWordStart().map
-			{
-				c=>
-				if(!hasNext)c.toString else
-				{
-					val sb=new lang.StringBuilder()
-					sb.append(c)
-					@tailrec
-					def processWord():Unit=
-					{
-						val c=nextChar()
-						if(isDelimiter(c))
-						{
-							a-=1
-						}
-						else
-						{
-							sb.append(c)
-							if(hasNext){processWord()}
-						}
-					}
-					processWord()
-					sb.toString
-				}
-			}.getOrElse("")
-		}
-	}
 	@tailrec
 	def gcd(a:Long,b:Long):Long={if(a%b==0)b else gcd(b,a%b)}
 	@tailrec
@@ -133,4 +28,80 @@ object Main
 	def lcm(a:Long,b:Long):Long={a/gcd(a,b)*b}
 	def factorial(n:Long,m:Long):Long={var f=n;for(i<-1L to n-1L){f*=i;f%=m};f}
 	def factorial(n:Int,m:Int):Int={var f=n;for(i<-1 to n-1){f*=i;f%=m};f}
+	def dYes():Unit={println("Yes");sys.exit(0)}
+	def dNo():Unit={println("No");sys.exit(0)}
+	def drop(x:Any):Unit={println(x);sys.exit(0)}
+	def cout(x:Any*):Unit=for(r<-x)println(r)
+	//union-find
+	class uni(val n:Int)
+	{
+		private var par=new Array[Int](n);for(i<-0 until n)par(i)=i
+		private var siz=Array.fill(n)(1)
+		def merge(x:Int,y:Int):Unit=
+		{
+			var rx=root(x)
+			var ry=root(y)
+			if(rx==ry)return
+			if(siz(rx)<siz(ry))
+			{
+				val tmp=rx
+				rx=ry
+				ry=tmp
+			}
+			siz(rx)+=siz(ry)
+			par(ry)=rx
+		}
+		def root(x:Int):Int=
+			if(par(x)==x)x else
+			{
+				par(x)=root(par(x))
+				par(x)
+			}
+		def same(x:Int,y:Int):Boolean=root(x)==root(y)
+		def size(x:Int):Int=siz(root(x))
+	}
+	//Fenwicktree(1-indexed)
+	class FwLong(val n:Long=0L)
+	{
+		private var fw=new Array[Long]((n+1).toInt)
+		def sum(i:Long):Long=
+		{
+			var j=i
+			var ans=0L
+			while(j>0)
+			{
+				ans+=fw(j.toInt)
+				j-=j&(-j)
+			}
+			ans
+		}
+		def add(i:Long,a:Long):Unit=
+		{
+			var j=i
+			if(j==0)return
+			else while(j<=n)
+			{
+				fw(j.toInt)+=a
+				j+=j&(-j)
+			}
+		}
+		def l_b(k:Long):Long=
+		{
+			var l=k
+			if(l<=0)return 0L
+			var ret=0L
+			var i=1L
+			while((i<<1)<=n)i<<=1
+			while(i!=0)
+			{
+				if(ret+i<=n&&fw((ret+i).toInt)<l)
+				{
+					l-=fw((ret+i).toInt)
+					ret+=i
+				}
+				i>>=1
+			}
+			ret+1
+		}
+	}
 }
