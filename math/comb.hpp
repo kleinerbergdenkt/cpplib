@@ -2,7 +2,7 @@ template<typename T>struct COMB
 {
 	int n;
 	vector<T>fa,ifa;
-	COMB(T n_):n(n_)
+	COMB(int n_):n(n_)
 	{
 		fa.resize(n+1);ifa.resize(n+1);
 		fa[0]=1;
