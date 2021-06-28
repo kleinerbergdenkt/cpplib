@@ -58,9 +58,9 @@ namespace gengar
 	#define Bit(n) (1LL<<(n))
 	#define myceil(a,b) ((a)+((b)-1))/(b)
 	#define scale(n) cout<<fixed<<setprecision(n)
-	using i64=int64_t;
-	using u64=uint64_t;
-	template<class T>using PQ=priority_queue<T,vt(T),greater<T>>;
+	using ll=long long;
+	using ull=unsigned long long;
+	template<class T>using PQ=priority_queue<T,vector<T>,greater<T>>;
 	void in(){}
 	template<class Car,class...Cdr>
 	void in(Car&&car,Cdr&&...cdr){cin>>car;in(forward<Cdr>(cdr)...);}
@@ -72,7 +72,7 @@ namespace gengar
 	int fact(int n,int m){int f=n;for(int i=n-1;i>=1;i--){f*=i;f%=m;}return f;}
 	template<class T>int chmin(T&a,const T&b){if(b<a){a=b;return 1;}return 0;}
 	template<class T>int chmax(T&a,const T&b){if(a<b){a=b;return 1;}return 0;}
-	const int inf=Bit(60);
+	const ll inf=0x1fffffffffffffff;
 	const double pi=acos(-1);
 	const int mod=1000000007;//998244353
 };
