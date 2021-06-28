@@ -32,6 +32,14 @@ template<long long Mod>struct modInt
 		}
 		return modInt(u);
 	}
+	constexpr modInt comb(long long a)noexcept
+	{
+		modInt n=*this,s=1;
+		for(int i=0;i<a;i++)s*=(n-modInt(i));
+		modInt m=1;
+		for(int i=1;i<=a;i++)m*=modInt(i);
+		return s*m.powm(mod-2);//Fermat's little thm
+	}
 	constexpr bool operator==(const modInt&r){return this->x==r.x;}
 	constexpr bool operator!=(const modInt&r){return this->x!=r.x;}
 	friend ostream&operator<<(ostream&os,const modInt<Mod>&a){return os<<a.x;}
