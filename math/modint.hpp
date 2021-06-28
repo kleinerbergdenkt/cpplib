@@ -13,7 +13,7 @@ template<long long Mod>struct modInt
 	constexpr modInt&operator+=(const modInt&r)noexcept{x+=r.x;if(x>=Mod)x-=Mod;return*this;}
 	constexpr modInt&operator-=(const modInt&r)noexcept{x-=r.x;if(x<0)x+=Mod;return*this;}
 	constexpr modInt&operator*=(const modInt&r)noexcept{x=x*r.x%Mod;return*this;}
-	constexpr modInt&operator/=(const modInt&r)noexcept{x=x*r.inv();return*this;}
+	constexpr modInt&operator/=(const modInt&r)noexcept{x=x*r.inv().getval()%Mod;return*this;}
 	constexpr modInt powm(long long n)noexcept
 	{
 		if(n<0)return powm(-n).inv();
