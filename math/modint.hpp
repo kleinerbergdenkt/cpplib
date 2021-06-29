@@ -38,7 +38,7 @@ template<long long Mod>struct modInt
 		for(int i=0;i<a;i++)s*=(n-modInt(i));
 		modInt m=1;
 		for(int i=1;i<=a;i++)m*=modInt(i);
-		return s*m.powm(mod-2);//Fermat's little thm
+		return s*m.powm(Mod-2);//Fermat's little thm
 	}
 	constexpr bool operator==(const modInt&r){return this->x==r.x;}
 	constexpr bool operator!=(const modInt&r){return this->x!=r.x;}
