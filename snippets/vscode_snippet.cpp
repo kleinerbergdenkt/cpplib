@@ -44,11 +44,10 @@
 #define _overload3(_1,_2,_3,name,...) name
 #define _rep(i,n) repi(i,0,n)
 #define repi(i,a,b) for(int i=(a),__B_SIZE__=(b);i<__B_SIZE__;i++)
-#define rep(...) _overload3(__VA_ARGS__,repi,_rep,)(__VA_ARGS__)
-#define _daolrevo3(_1,_2,_3,name,...) name
 #define _per(i,n) peri(i,n,0)
 #define peri(i,a,b) for(int i=(a),__B_SIZE__=(b);i>=__B_SIZE__;i--)
-#define per(...) _daolrevo3(__VA_ARGS__,peri,_per,)(__VA_ARGS__)
+#define rep(...) _overload3(__VA_ARGS__,repi,_rep,)(__VA_ARGS__)
+#define per(...) _overload3(__VA_ARGS__,peri,_per,)(__VA_ARGS__)
 #define bitshift(n) (1LL<<(n))
 #define myceil(a,b) ((a)+((b)-1))/(b)
 #define scale(n) cout<<fixed<<setprecision(n)
