@@ -1,14 +1,15 @@
 
+#include<vector>
 //bheap
 struct bheap
 {
-	vector<long>_a;
+	std::vector<long>_a;
 	bheap(){_a.push_back(0L);}
 	void push(long _x)
 	{
 		_a.push_back(_x);
 		long pos=_a.size()-1;
-		for(;pos>1&&_a[pos]<_a[pos/2];swap(_a[pos],_a[pos/2]),pos/=2);
+		for(;pos>1&&_a[pos]<_a[pos/2];std::swap(_a[pos],_a[pos/2]),pos/=2);
 	}
 	void pop()
 	{
@@ -21,19 +22,19 @@ struct bheap
 			rc=lc+1;
 			if(lc==_a.size()-1)
 			{
-				if(_a[pos]>_a[lc]){swap(_a[pos],_a[lc]);pos=lc;}
+				if(_a[pos]>_a[lc]){std::swap(_a[pos],_a[lc]);pos=lc;}
 				else{break;}
 			}
 			else
 			{
 				if(_a[lc]<_a[rc])
 				{
-					if(_a[lc]<_a[pos]){swap(_a[pos],_a[lc]);pos=lc;}
+					if(_a[lc]<_a[pos]){std::swap(_a[pos],_a[lc]);pos=lc;}
 					else{break;}
 				}
 				else
 				{
-					if(_a[rc]<_a[pos]){swap(_a[pos],_a[rc]);pos=rc;}
+					if(_a[rc]<_a[pos]){std::swap(_a[pos],_a[rc]);pos=rc;}
 					else{break;}
 				}
 			}

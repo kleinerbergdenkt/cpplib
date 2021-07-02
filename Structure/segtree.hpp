@@ -3,6 +3,7 @@
 template<typename T>
 struct segtree
 {
+	using namespace std;
 	using F=function<T(T,T)>;
 	int sz;
 	vector<T>seg;

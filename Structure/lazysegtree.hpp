@@ -3,6 +3,7 @@
 template<typename T>
 struct lazyseg
 {
+	using namespace std;
 	using F=function<T(T,T)>;
 	using G=function<T(T,T,int,int)>;
 	const F calcfn,lazycalcfn;

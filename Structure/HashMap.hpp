@@ -1,11 +1,13 @@
 
+#include<vector>
+#include<string>
 //hmap
 struct hmap
 {
-	vector<vector<pair<string,int>>>l_;
-	hmap(){l_.resize(10000,vector<pair<string,int>>(0));}
-	int gethash(string key){int r=0;for(int i=0;i<key.length();i++)r+=key[i];return r%10000*17%10000;}
-	void put(string key,int val)
+	std::vector<std::vector<std::pair<std::string,int>>>l_;
+	hmap(){l_.resize(10000,std::vector<std::pair<std::string,int>>(0));}
+	int gethash(std::string key){int r=0;for(int i=0;i<key.length();i++)r+=key[i];return r%10000*17%10000;}
+	void put(std::string key,int val)
 	{
 		int id=gethash(key);
 		if(l_[id].empty())l_[id].push_back(make_pair(key,val));
@@ -20,7 +22,7 @@ struct hmap
 			ar.push_back(make_pair(key,val));
 		}
 	}
-	int get(string key)
+	int get(std::string key)
 	{
 		int id=gethash(key);
 		if(l_[id].empty())return -1;
@@ -35,7 +37,7 @@ struct hmap
 			return -1;
 		}
 	}
-	void rm(string key)
+	void rm(std::string key)
 	{
 		int id=gethash(key);
 		if(l_[id].empty())return;

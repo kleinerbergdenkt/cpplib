@@ -1,10 +1,11 @@
 
+#include<vector>
 //Fenwicktree(1-indexed)
 template<typename T>
 struct Fw
 {
 	int n;
-	vector<T>fw;
+	std::vector<T>fw;
 	Fw(int n_=0):n(n_),fw(n_+1){}
 	T sum(int i)
 	{
@@ -17,7 +18,7 @@ struct Fw
 		if(!i)return;
 		for(;i<=n;i+=i&-i)fw[i]+=a;
 	}
-	int l_b(T k)
+	int l_b_fw(T k)
 	{
 		if(k<=0)return 0;
 		int ret=0,i=1;
