@@ -76,7 +76,7 @@ namespace gengar
 	const ll inf=0x1fffffffffffffff;
 	const double pi=acos(-1);
 	const int mod=1000000007;//998244353
-};
+}
 using namespace gengar;
 
 int32_t main()
