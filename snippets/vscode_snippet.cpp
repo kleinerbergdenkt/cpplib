@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
-#pragma GCC optimize("Ofast")
+#pragma GCC target("avx512f")
+#pragma GCC optimize("O3")
 #define int long long
 #define itn int
 #define vt(tp) vector<tp>
