@@ -6,8 +6,6 @@
 #define vvt(tp) vector<vector<tp>>
 #define vvt2(nm,tp,h,w,n) vector<vector<tp>>nm((h),vector<tp>(w,n))
 #define P pair<int,int>
-#define hmap unordered_map
-#define hset unordered_set
 #define all(x) x.begin(),x.end()
 #define rsort(x) nsort(x);reverse(all(x))
 #define unq(v) v.erase(unique(all(v)),v.end())
