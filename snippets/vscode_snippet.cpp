@@ -1,25 +1,4 @@
-#include<algorithm>
-#include<array>
-#include<bitset>
-#include<cassert>
-#include<climits>
-#include<cmath>
-#include<cstring>
-#include<deque>
-#include<functional>
-#include<iostream>
-#include<iomanip>
-#include<map>
-#include<numeric>
-#include<optional>
-#include<queue>
-#include<set>
-#include<stack>
-#include<string>
-#include<tuple>
-#include<unordered_map>
-#include<unordered_set>
-#include<vector>
+#include<bits/stdc++.h>
 #pragma GCC optimize("Ofast")
 #define int long long
 #define itn int
@@ -51,7 +30,7 @@
 #define bitshift(n) (1LL<<(n))
 #define myceil(a,b) ((a)+((b)-1))/(b)
 #define scale(n) cout<<fixed<<setprecision(n)
-namespace gengar
+namespace gengar094
 {
 	using i32=int32_t;
 	using i64=int64_t;
@@ -76,14 +55,14 @@ namespace gengar
 	const ll inf=0x1fffffffffffffff;
 	const double pi=acos(-1);
 	const int mod=1000000007;//998244353
-}
-using namespace gengar;
-
-int32_t main()
-{
-	using namespace std;
-	std::ios::sync_with_stdio(false);
-	std::cin.tie(nullptr);
 	
-	return 0;
+	auto _main()
+	{
+		using namespace std;
+		
+	}
 }
+
+
+
+int32_t main(){std::ios::sync_with_stdio(false);std::cin.tie(nullptr);gengar094::_main();return 0;}
