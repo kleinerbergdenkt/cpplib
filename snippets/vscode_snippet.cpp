@@ -62,5 +62,10 @@ namespace gengar094
 }
 
 
-
-int32_t main(){std::ios::sync_with_stdio(false);std::cin.tie(nullptr);gengar094::_main();return 0;}
+int32_t main()
+{
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(nullptr);
+	gengar094::_main();
+	return 0;
+}

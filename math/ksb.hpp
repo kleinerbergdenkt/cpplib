@@ -1,6 +1,6 @@
-map<int,int>ksb(vector<int>ns)
+std::map<int,int>ksb(std::vector<int>ns)
 {
-	map<int,int>m;
+	std::map<int,int>m;
 	for(auto n:ns)
 	{
 		for(int i=2;i*i<=n;i++)

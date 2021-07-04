@@ -1,7 +1,7 @@
 
-template<typename T>vector<pair<T,T>>prime_factor(T n)
+template<typename T>std::vector<std::pair<T,T>>prime_factor(T n)
 {
-	vector<pair<T,T>> ret;
+	std::vector<std::pair<T,T>>ret;
 	for(T i=2;i*i<=n;i++)
 	{
 		if(n%i!=0)continue;
