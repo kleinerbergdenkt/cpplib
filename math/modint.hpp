@@ -27,8 +27,8 @@ template<long long Mod>struct modInt
 		while(b)
 		{
 			long long t=a/b;
-			a-=t*b;swap(a,b);
-			u-=t*v;swap(u,v);
+			a-=t*b;std::swap(a,b);
+			u-=t*v;std::swap(u,v);
 		}
 		return modInt(u);
 	}
@@ -42,8 +42,8 @@ template<long long Mod>struct modInt
 	}
 	constexpr bool operator==(const modInt&r){return this->x==r.x;}
 	constexpr bool operator!=(const modInt&r){return this->x!=r.x;}
-	friend ostream&operator<<(ostream&os,const modInt<Mod>&a){return os<<a.x;}
-	friend istream&operator>>(istream&is,modInt<Mod>&a){long long v;is>>v;a=modInt<Mod>(v);return is;} 
+	friend std::ostream&operator<<(std::ostream&os,const modInt<Mod>&a){return os<<a.x;}
+	friend std::istream&operator>>(std::istream&is,modInt<Mod>&a){long long v;is>>v;a=modInt<Mod>(v);return is;} 
 };
 
 //const long long mod=1000000007;
