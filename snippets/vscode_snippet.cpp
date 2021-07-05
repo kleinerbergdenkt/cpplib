@@ -24,14 +24,14 @@
 #pragma GCC optimize("O3")
 #define int long long
 #define itn int
-#define intde(...) int __VA_ARGS__;in(__VA_ARGS__)
-#define i32de(...) i32 __VA_ARGS__;in(__VA_ARGS__)
-#define i64de(...) i64 __VA_ARGS__;in(__VA_ARGS__)
-#define u32de(...) u32 __VA_ARGS__;in(__VA_ARGS__)
-#define u64de(...) u64 __VA_ARGS__;in(__VA_ARGS__)
-#define strde(...) string __VA_ARGS__;in(__VA_ARGS__)
-#define chrde(...) char __VA_ARGS__;in(__VA_ARGS__)
-#define dblde(...) double __VA_ARGS__;in(__VA_ARGS__)
+#define int_(...) int __VA_ARGS__;in(__VA_ARGS__)
+#define i32_(...) i32 __VA_ARGS__;in(__VA_ARGS__)
+#define i64_(...) i64 __VA_ARGS__;in(__VA_ARGS__)
+#define u32_(...) u32 __VA_ARGS__;in(__VA_ARGS__)
+#define u64_(...) u64 __VA_ARGS__;in(__VA_ARGS__)
+#define str_(...) string __VA_ARGS__;in(__VA_ARGS__)
+#define chr_(...) char __VA_ARGS__;in(__VA_ARGS__)
+#define dbl_(...) double __VA_ARGS__;in(__VA_ARGS__)
 #define vt(tp) vector<tp>
 #define vvt(tp) vector<vector<tp>>
 #define vvt2(nm,tp,h,w,n) vector<vector<tp>>nm((h),vector<tp>(w,n))
@@ -96,9 +96,9 @@ namespace gengar094
 	void Print(long long a){printf("%lld",a);}
 	void Print(unsigned long long a){printf("%llu",a);}
 	void Print(char a){printf("%c",a);}
-	void Print(float a){scanf("%f",a);}
-	void Print(double a){scanf("%lf",a);}
-	void Print(long double a){scanf("%Lf",a);}
+	void Print(float a){printf("%f",a);}
+	void Print(double a){printf("%lf",a);}
+	void Print(long double a){printf("%Lf",a);}
 	void Print(const std::string&a){for(auto&&i:a)Print(i);}
 	template<class T>void Print(const std::vector<T>&);
 	template<class T,class U>void Print(const std::pair<T,U>&);
@@ -122,7 +122,8 @@ namespace gengar094
 		for(T i=2;i*i<=n;i++)
 		{if(n%i!=0)continue;T tmp=0;
 		while(n%i==0){tmp++;n/=i;}ret.push_back(make_pair(i,tmp));}
-		if(n!=1)ret.push_back(make_pair(n,1));return ret;
+		if(n!=1)ret.push_back(make_pair(n,1));
+		return ret;
 	}
 	template<class T>int chmin(T&a,const T&b){if(b<a){a=b;return 1;}return 0;}
 	template<class T>int chmax(T&a,const T&b){if(a<b){a=b;return 1;}return 0;}
