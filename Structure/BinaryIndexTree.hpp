@@ -6,7 +6,7 @@ struct BIT
 {
 	int n;
 	std::vector<T>B_I_T;
-	BIT(int n_=0):n(n_),B_I_T(n_+1){}
+	BIT(int n_=0,T init=0):n(n_),B_I_T(n_+1,init){}
 	T sum(int i)
 	{
 		T ans=0;
