@@ -42,7 +42,7 @@
 			"#define vvt2(nm,tp,h,w,n) vector<vector<tp>>nm((h),vector<tp>(w,n))",
 			"#define P pair<int,int>",
 			"#define all(x) x.begin(),x.end()",
-			"#define rsort(x) nsort(x);reverse(all(x))",
+			"#define rsort(x) sort(all(x));reverse(all(x))",
 			"#define unq(v) v.erase(unique(all(v)),v.end())",
 			"#define l_b(c,x) distance(c.begin(),lower_bound(all(c),(x)))",
 			"#define u_b(c,x) distance(c.begin(),upper_bound(all(c),(x)))",
