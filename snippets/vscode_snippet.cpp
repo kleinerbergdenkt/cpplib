@@ -24,14 +24,14 @@
 #pragma GCC optimize("O3")
 #define int long long
 #define itn int
-#define _int(...) int __VA_ARGS__;in(__VA_ARGS__)
-#define _i32(...) i32 __VA_ARGS__;in(__VA_ARGS__)
-#define _i64(...) i64 __VA_ARGS__;in(__VA_ARGS__)
-#define _u32(...) u32 __VA_ARGS__;in(__VA_ARGS__)
-#define _u64(...) u64 __VA_ARGS__;in(__VA_ARGS__)
-#define _str(...) string __VA_ARGS__;in(__VA_ARGS__)
-#define _chr(...) char __VA_ARGS__;in(__VA_ARGS__)
-#define _dbl(...) double __VA_ARGS__;in(__VA_ARGS__)
+#define INT(...) int __VA_ARGS__;in(__VA_ARGS__)
+#define I32(...) i32 __VA_ARGS__;in(__VA_ARGS__)
+#define I64(...) i64 __VA_ARGS__;in(__VA_ARGS__)
+#define U32(...) u32 __VA_ARGS__;in(__VA_ARGS__)
+#define U64(...) u64 __VA_ARGS__;in(__VA_ARGS__)
+#define STR(...) string __VA_ARGS__;in(__VA_ARGS__)
+#define CHR(...) char __VA_ARGS__;in(__VA_ARGS__)
+#define DBL(...) double __VA_ARGS__;in(__VA_ARGS__)
 #define vt(tp) vector<tp>
 #define vvt(tp) vector<vector<tp>>
 #define vvt2(nm,tp,h,w,n) vector<vector<tp>>nm((h),vector<tp>(w,n))
