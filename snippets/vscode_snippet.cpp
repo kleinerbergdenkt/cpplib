@@ -1,30 +1,45 @@
-#include<algorithm>
-#include<array>
-#include<bitset>
-#include<cassert>
-#include<climits>
-#include<cmath>
-#include<cstring>
-#include<deque>
-#include<functional>
-#include<iostream>
-#include<iomanip>
-#include<map>
-#include<numeric>
-#include<optional>
-#include<queue>
-#include<set>
-#include<stack>
-#include<string>
-#include<tuple>
-#include<unordered_map>
-#include<unordered_set>
-#include<vector>
+#include <cstdlib>
+#include <cmath>
+#include <climits>
+#include <cfloat>
+#include <map>
+#include <utility>
+#include <set>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <sstream>
+#include <deque>
+#include <complex>
+#include <stack>
+#include <queue>
+#include <cstdio>
+#include <cctype>
+#include <cstring>
+#include <ctime>
+#include <iterator>
+#include <bitset>
+#include <numeric>
+#include <list>
+#include <iomanip>
+#include <cassert>
+#include <array>
+#include <tuple>
+#include <initializer_list>
+#include <unordered_set>
+#include <unordered_map>
+#include <forward_list>
+#include <random>
 #pragma GCC target("avx512f")
 #pragma GCC optimize("O3")
 #define int long long
+#define ll long long
 #define itn int
 #define INT(...) int __VA_ARGS__;in(__VA_ARGS__)
+#define LL(...) ll __VA_ARGS__;in(__VA_ARGS__)
 #define I32(...) i32 __VA_ARGS__;in(__VA_ARGS__)
 #define I64(...) i64 __VA_ARGS__;in(__VA_ARGS__)
 #define U32(...) u32 __VA_ARGS__;in(__VA_ARGS__)
@@ -32,11 +47,7 @@
 #define STR(...) string __VA_ARGS__;in(__VA_ARGS__)
 #define CHR(...) char __VA_ARGS__;in(__VA_ARGS__)
 #define DBL(...) double __VA_ARGS__;in(__VA_ARGS__)
-#define vt(tp) vector<tp>
-#define vvt(tp) vector<vector<tp>>
-#define vvt2(nm,tp,h,w,n) vector<vector<tp>>nm((h),vector<tp>(w,n))
-#define P pair<int,int>
-#define all(x) x.begin(),x.end()
+#define all(x) (x).begin(),(x).end()
 #define rsort(x) sort(all(x));reverse(all(x))
 #define unq(v) v.erase(unique(all(v)),v.end())
 #define l_b(c,x) distance(c.begin(),lower_bound(all(c),(x)))
@@ -57,18 +68,33 @@
 #define per(...) _overload3(__VA_ARGS__,peri,_per,)(__VA_ARGS__)
 #define bitshift(n) (1LL<<(n))
 #define myceil(a,b) ((a)+((b)-1))/(b)
-#define scale(n) cout<<fixed<<setprecision(n)
+
 namespace gengar094{
+using i32=   std::int32_t;
+using i64=   std::int64_t;
+using u32=   std::uint32_t;
+using u64=   std::uint64_t;
+using isize= std::ptrdiff_t;
+using usize= std::size_t;
+using vi=    std::vector<int>;
+using vvi=   std::vector<vi>;
+using vll=   std::vector<ll>;
+using vvll=  std::vector<vll>;
+using vi32=  std::vector<i32>;
+using vvi32= std::vector<vi32>;
+using vi64=  std::vector<i64>;
+using vvi64= std::vector<vi64>;
+using vd=    std::vector<double>;
+using vvd=   std::vector<vd>;
+using vc=    std::vector<char>;
+using vvc=   std::vector<vc>;
+using vs=    std::vector<std::string>;
+using vpii=  std::vector<std::pair<int,int>>;
+using vpll=  std::vector<std::pair<ll,ll>>;
+using P=     std::pair<int,int>;
 
-using i32=std::int32_t;
-using i64=std::int64_t;
-using u32=std::uint32_t;
-using u64=std::uint64_t;
-using isize=std::ptrdiff_t;
-using usize=std::size_t;
-using ll=long long;
-using ull=unsigned long long;
-
+template<class T>inline bool chmin(T&a,const T&b){if(b<a){a=b;return true;}return false;}
+template<class T>inline bool chmax(T&a,const T&b){if(a<b){a=b;return true;}return false;}
 int Scan(){return getchar();}
 void Scan(signed&a){scanf("%d",&a);}
 void Scan(unsigned&a){scanf("%u",&a);}
@@ -123,23 +149,23 @@ template<typename T>std::vector<std::pair<T,T>>prime_factor(T n)
 	{
 		if(n%i!=0)continue;
 		T tmp=0;
-		while(n%i==0){tmp++;n/=i;}
+		while(n%i==0)tmp++,n/=i;
 		ret.push_back(make_pair(i,tmp));
 	}
 	if(n!=1)ret.push_back(make_pair(n,1));
 	return ret;
 }
-template<class T>int chmin(T&a,const T&b){if(b<a){a=b;return 1;}return 0;}
-template<class T>int chmax(T&a,const T&b){if(a<b){a=b;return 1;}return 0;}
 const ll inf=0x1fffffffffffffff;
+const ll mod=1000000007LL;//998244353
+const double eps=1e-8;
 const double pi=acos(-1);
-const int mod=1000000007;//998244353
 
-auto _main=[]()
+void mainmain()
 {
 	using namespace std;
 	
-};
+}
+
 
 
 }
@@ -147,6 +173,6 @@ std::int32_t main()
 {
 	//std::ios::sync_with_stdio(false);
 	std::cin.tie(nullptr);
-	gengar094::_main();
-	return 0;
+	std::cout<<std::fixed<<std::setprecision(15);
+	gengar094::mainmain();
 }
