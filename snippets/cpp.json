@@ -163,7 +163,7 @@
 			"constexpr ll inf=0x1fffffffffffffff;",
 			"constexpr ll mod=1000000007LL;//998244353",
 			"constexpr double eps=1e-8;",
-			"constexpr double pi= 3.141592653589793238462643383279;",
+			"constexpr double pi=3.141592653589793238462643383279;",
 			"",
 			"void mainmain()",
 			"{",
