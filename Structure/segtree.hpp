@@ -3,10 +3,9 @@
 template<typename T>
 struct segtree
 {
-	using namespace std;
-	using F=function<T(T,T)>;
+	using F=std::function<T(T,T)>;
 	int sz;
-	vector<T>seg;
+	std::vector<T>seg;
 	const F f;
 	const T m1;
 	segtree(int n,const F f,const T &m1):f(f),m1(m1){for(sz=1;sz<n;sz<<=1);seg.assign(2*sz,m1);}
