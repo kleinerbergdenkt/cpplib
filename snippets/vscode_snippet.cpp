@@ -155,10 +155,10 @@ template<typename T>std::vector<std::pair<T,T>>prime_factor(T n)
 	if(n!=1)ret.push_back(make_pair(n,1));
 	return ret;
 }
-const ll inf=0x1fffffffffffffff;
-const ll mod=1000000007LL;//998244353
-const double eps=1e-8;
-const double pi=acos(-1);
+constexpr ll inf=0x1fffffffffffffff;
+constexpr ll mod=1000000007LL;//998244353
+constexpr double eps=1e-8;
+constexpr double pi= 3.141592653589793238462643383279;
 
 void mainmain()
 {
