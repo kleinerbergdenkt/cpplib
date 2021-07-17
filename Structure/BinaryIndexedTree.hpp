@@ -1,6 +1,6 @@
 
 #include<vector>
-//BinaryIndexTree(1-indexed)
+//BinaryIndexedTree(1-indexed)
 template<typename T>
 struct BIT
 {
