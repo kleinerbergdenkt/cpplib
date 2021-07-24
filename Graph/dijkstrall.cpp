@@ -1,15 +1,16 @@
 #include<bits/stdc++.h>
+#define int long long
 
 int n,m,s,t;
 std::vector<std::vector<std::pair<int,int>>>g(101010);
 
 int dijkstra(int s,int t)
 {
-	std::vector<int>dist(n,1e9);dist[s]=0;
+	std::vector<int>dist(n,1ll<<60);dist[s]=0;
 	std::priority_queue<std::pair<int,int>,
 	std::vector<std::pair<int,int>>,
 	std::greater<>>pq;
-	pq.emplace(0,s);
+	pq.emplace(0ll,s);
 	while(!pq.empty())
 	{
 		auto[x,u]=pq.top();
@@ -20,7 +21,7 @@ int dijkstra(int s,int t)
 	return dist[t];
 }
 
-int main()
+std::int32_t main()
 {
 	using namespace std;
 	cin>>n>>m>>s>>t;
