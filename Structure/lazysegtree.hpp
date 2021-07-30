@@ -1,71 +1,75 @@
 
-//lazyseg
-template<typename T>
-struct lazyseg
+//lazysegtree
+template<typename X,typename M>struct lazyseg
 {
-	using namespace std;
-	using F=function<T(T,T)>;
-	using G=function<T(T,T,int,int)>;
-	const F calcfn,lazycalcfn;
-	const G updatefn;
 	int n;
-	T defvalue;
-	vector<T>dat,lazy;
-	vector<bool>lazyflag;
-	lazyseg(int n_=0,T defvalue_=0,
-		const F calcfn_=[](T a,T b){return a+b;},
-		const F lazycalcfn_=[](T a,T b){return a+b;},
-		const G updatefn_=[](T a,T b,int l,int r){return a+b*(r-l);}
-	):defvalue(defvalue_),calcfn(calcfn_),lazycalcfn(lazycalcfn_),updatefn(updatefn_)
+	std::function<X(X,X)>fx;
+	std::function<X(X,M)>fa;
+	std::function<X(M,M)>fm;
+	const X ex;
+	const M em;
+	std::vector<X>d;
+	std::vector<M>lazy;
+	lazyseg
+	(
+		int n_,
+		std::function<X(X,X)>fx_,
+		std::function<X(X,M)>fa_,
+		std::function<X(M,M)>fm_,
+		X ex_,
+		M em_
+	):n(),fx(fx_),fa(fa_),fm(fm_),ex(ex_),em(em_),d(n_*4,ex),lazy(n_*4,em)
 	{
-		n=1;
-		for(;n<n_;n<<=1);
-		dat.assign(2*n-1,defvalue);
-		lazy.assign(2*n-1,T());
-		lazyflag.assign(2*n-1,false);
+		int x=1;
+		while(n_>x)x*=2;
+		n=x;
 	}
-	void copy(const vector<T>&v)
+
+	void set(int i,X x){d[i+n-1]=x;}
+	void build(){for(int k=n-2;k>=0;k--)d[k]=fx(d[2*k+1],d[2*k+2]);}
+	void eval(int k)
 	{
-		for(int i=0;i<v.size();i++)dat[i+n-1]=v[i];
-		for(int i=n-2;i>=0;i--)dat[i]=calcfn(dat[2*i+1],dat[2*i+2]);
-	}
-	void eval(int i,int l,int r)
-	{
-		if(lazyflag[i])
+		if(lazy[k]==em)return;
+		if(k<n-1)
 		{
-			dat[i]=updatefn(dat[i],lazy[i],l,r);
-			if(r-l>1)
-			{
-				lazy[2*i+1]=lazyflag[2*i+1]?lazycalcfn(lazy[2*i+1],lazy[i]):lazy[i];
-				lazy[2*i+2]=lazyflag[2*i+2]?lazycalcfn(lazy[2*i+2],lazy[i]):lazy[i];
-				lazyflag[2*i+1]=lazyflag[2*i+2]=true;
-			}	
-			lazyflag[i]=false;
+			lazy[k*2+1]=fm(lazy[k*2+1],lazy[k]);
+			lazy[k*2+2]=fm(lazy[k*2+2],lazy[k]);
+		}
+		d[k]=fa(d[k],lazy[k]);
+		lazy[k]=em;
+	}
+	void update(int a,int b,M x,int k,int l,int r)
+	{
+		eval(k);
+		if(a<=l&&r<=b)lazy[k]=fm(lazy[k],x),eval(k);
+		else if(a<r&&l<b)
+		{
+			update(a,b,x,k*2+1,l,(l+r)/2);
+			update(a,b,x,k*2+2,(l+r)/2,r);
+			d[k]=fx(d[k*2+1],d[k*2+2]);
 		}
 	}
-	void update(int a,int b,T x,int k=0,int l=0,int r=-1)
+	void update(int a,int b,M x){update(a,b,x,0,0,n);}
+	X qsub(int a,int b,int k,int l,int r)
 	{
-		if(r<0)r=n;
-		eval(k,l,r);
-		if(b<=l||r<=a)return;
-		else if(a<=l&&r<=b)
+		eval(k);
+		if(r<=a||b<=l)return ex;
+		else if(a<=l&&r<=b)return d[k];
+		else
 		{
-			lazy[k]=lazyflag[k]?lazycalcfn(lazy[k],x):x;
-			lazyflag[k]=true;
-			eval(k,l,r);
-		}else
-		{
-			update(a,b,x,2*k+1,l,(l+r)/2);
-			update(a,b,x,2*k+2,(l+r)/2,r);
-			dat[k]=calcfn(dat[2*k+1],dat[2*k+2]);
+			X vl=qsub(a,b,k*2+1,l,(l+r)/2);
+			X vr=qsub(a,b,k*2+2,(l+r)/2,r);
+			return fx(vl,vr);
 		}
 	}
-	T query(int a,int b,int k=0,int l=0,int r=-1)
-	{
-		if(r<0)r=n;
-		eval(k,l,r);
-		if(b<=l||r<=a)return defvalue;
-		else if(a<=l&&r<=b)return dat[k];
-		else return calcfn(query(a,b,2*k+1,l,(l+r)/2),query(a,b,2*k+2,(l+r)/2,r));
-	}
+	X query(int a,int b){return qsub(a,b,0,0,n);}
 };
+
+//RMQ :
+//int n=**size**
+//auto fx=[](int a,int b)->int{return min(a,b);};
+//auto fa=[](int x,int m)->int{return m;};
+//auto fm=[](int m1,int m2)->int{return m2;};
+//int ex=inf;
+//int em=inf;
+//lazyseg<int,int>rmq(n,fx,fa,fm,ex,em);
