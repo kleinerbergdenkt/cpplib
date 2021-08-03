@@ -8,9 +8,9 @@ struct segtree
 	std::vector<T>seg;
 	const F f;
 	const T m1;
-	segtree(int n,const F f,const T &m1):f(f),m1(m1){for(sz=1;sz<n;sz<<=1);seg.assign(2*sz,m1);}
-	void update(int k,const T &x){k+=sz;seg[k]=x;for(;k>>=1;)seg[k]=f(seg[2*k+0],seg[2*k+1]);}
-	void set(int k,const T &x){seg[k+sz]=x;}
+	segtree(int n,const F f,const T&m1):f(f),m1(m1){for(sz=1;sz<n;sz<<=1);seg.assign(2*sz,m1);}
+	void update(int k,const T&x){k+=sz;seg[k]=x;for(;k>>=1;)seg[k]=f(seg[2*k+0],seg[2*k+1]);}
+	void set(int k,const T&x){seg[k+sz]=x;}
 	void build(){for(int k=sz-1;k>0;k--)seg[k]=f(seg[2*k+0],seg[2*k+1]);}
 	T query(int a,int b)
 	{
@@ -18,9 +18,9 @@ struct segtree
 		for(a+=sz,b+=sz;a<b;a>>=1,b>>=1){if(a&1)L=f(L,seg[a++]);if(b&1)R=f(seg[--b],R);}
 		return f(L,R);
 	}
-	T operator[](const int &k)const{return seg[k+sz];}
+	T operator[](const int&k)const{return seg[k+sz];}
 	template<typename C>
-	int find_subtree(int a,const C &check,T &M,bool type)
+	int find_subtree(int a,const C&check,T&M,bool type)
 	{
 		for(;a<sz;)
 		{
@@ -30,7 +30,7 @@ struct segtree
 		return a-sz;
 	}
 	template<typename C>
-	int find_first(int a,const C &check)
+	int find_first(int a,const C&check)
 	{
 		T L=m1;
 		if(a<=0)return check(f(L,seg[1]))?find_subtree(1,check,L,false):-1;
@@ -47,7 +47,7 @@ struct segtree
 		return -1;
 	}
 	template<typename C>
-	int find_last(int b,const C &check)
+	int find_last(int b,const C&check)
 	{
 		T R=m1;
 		if(b>=sz)return check(f(seg[1],R))?find_subtree(1,check,R,true):-1;
