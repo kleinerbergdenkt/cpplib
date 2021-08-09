@@ -1,27 +1,32 @@
-#include<iostream>
-using namespace std;
+#include<bits/stdc++.h>
 
-int watch[512][512];
-char maze[512][512];
-void dfs(int h,int w,int ny,int nx)
+std::vector<std::vector<int>>g(200200);
+std::vector<int>ans;
+
+void dfs(int cur,int old)
 {
-	if(ny<0||h<=ny||nx<0||w<=nx||maze[ny][nx]=='#'||watch[ny][nx])return;
-	watch[ny][nx]=1;
-	dfs(h,w,ny+1,nx);
-	dfs(h,w,ny,nx+1);
-	dfs(h,w,ny-1,nx);
-	dfs(h,w,ny,nx-1);
-}
-main()
-{
-	int h,w;cin>>h>>w;
-	int sy,sx,gy,gx;
-	for(int i=0;i<h;i++)for(int j=0;j<w;j++)
+	ans.emplace_back(cur);
+	for(int i:g[cur])if(i!=old)
 	{
-		cin>>maze[i][j];
-		if(maze[i][j]=='s'){sy=i;sx=j;}
-		if(maze[i][j]=='g'){gy=i;gx=j;}
+		dfs(i,cur);
+		ans.emplace_back(cur);
 	}
-	dfs(h,w,sy,sx);
-	puts(watch[gy][gx]?"Yes":"No");
+}
+
+int main()
+{
+	using namespace std;
+	int n;cin>>n;
+	int a,b;
+	for(int i=0;i<n-1;i++)
+	{
+		cin>>a>>b;a--;b--;
+		g[a].emplace_back(b);
+		g[b].emplace_back(a);
+	}
+	for(auto&v:g)sort(v.begin(),v.end());
+
+	dfs(0,-1);
+	for(int i:ans)cout<<i+1<<' ';
+	cout<<endl;
 }
