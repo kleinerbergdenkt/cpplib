@@ -36,10 +36,10 @@
 #pragma GCC target("avx512f")
 #pragma GCC optimize("O3")
 #define int long long
-#define ll long long
+#define L long long
 #define itn int
 #define INT(...) int __VA_ARGS__;in(__VA_ARGS__)
-#define LL(...) ll __VA_ARGS__;in(__VA_ARGS__)
+#define LI(...)  L __VA_ARGS__;in(__VA_ARGS__)
 #define I32(...) i32 __VA_ARGS__;in(__VA_ARGS__)
 #define I64(...) i64 __VA_ARGS__;in(__VA_ARGS__)
 #define U32(...) u32 __VA_ARGS__;in(__VA_ARGS__)
@@ -78,8 +78,8 @@ using isize= std::ptrdiff_t;
 using usize= std::size_t;
 using vi=    std::vector<int>;
 using vvi=   std::vector<vi>;
-using vll=   std::vector<ll>;
-using vvll=  std::vector<vll>;
+using vL=    std::vector<L>;
+using vvL=   std::vector<vL>;
 using vi32=  std::vector<i32>;
 using vvi32= std::vector<vi32>;
 using vi64=  std::vector<i64>;
@@ -90,7 +90,7 @@ using vc=    std::vector<char>;
 using vvc=   std::vector<vc>;
 using vs=    std::vector<std::string>;
 using vpii=  std::vector<std::pair<int,int>>;
-using vpll=  std::vector<std::pair<ll,ll>>;
+using vpLL=  std::vector<std::pair<L,L>>;
 using P=     std::pair<int,int>;
 
 template<class T>inline bool chmin(T&a,const T&b){if(b<a){a=b;return true;}return false;}
@@ -167,8 +167,8 @@ template<typename T>std::vector<std::pair<T,T>>prime_factor(T n)
 	if(n!=1)ret.push_back(std::make_pair(n,1));
 	return ret;
 }
-constexpr ll inf=0x1fffffffffffffff;
-constexpr ll mod=1000000007LL;//998244353
+constexpr L inf=0x1fffffffffffffff;
+constexpr L mod=1000000007LL;//998244353
 constexpr double eps=1e-8;
 constexpr double pi=3.141592653589793238462643383279;
 
