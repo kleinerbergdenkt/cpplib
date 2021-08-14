@@ -132,7 +132,7 @@ constexpr double eps=1e-8;
 constexpr double pi=3.141592653589793238462643383279;
 
 
-void mainmain()
+void solve()
 {
 	using namespace std;
 	
@@ -144,5 +144,5 @@ std::int32_t main()
 	//std::ios::sync_with_stdio(false);
 	std::cin.tie(nullptr);
 	std::cout<<std::fixed<<std::setprecision(15);
-	mainmain();
+	solve();
 }

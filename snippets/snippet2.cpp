@@ -130,8 +130,8 @@ constexpr i64 mod=1000000007LL;
 constexpr i64 mod2=998244353LL;
 constexpr double eps=1e-8;
 constexpr double pi=3.141592653589793238462643383279;
+//namespace gengar094{
 
-namespace gengar094{
 //union-find
 struct uni
 {
@@ -476,18 +476,17 @@ template<long long Mod>struct modInt
 };
 using mint=modInt<mod>;//mod2
 
-void mainmain()
+void solve()
 {
 	using namespace std;
 	
 }
 
 
-}
 std::int32_t main()
 {
 	//std::ios::sync_with_stdio(false);
 	std::cin.tie(nullptr);
 	std::cout<<std::fixed<<std::setprecision(15);
-	gengar094::mainmain();
+	solve();
 }
