@@ -182,7 +182,7 @@
 			"void mainmain()",
 			"{",
 			"    using namespace std;",
-			"    ",
+			"    $0",
 			"}",
 			"",
 			"",
