@@ -33,6 +33,15 @@
 #include <unordered_map>
 #include <forward_list>
 #include <random>
+//#define INCLUDE_BOOST
+#ifdef INCLUDE_BOOST
+#if __has_include(<boost/range/irange.hpp>)
+#include <boost/range/irange.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/join.hpp>
+#include <boost/algorithm/string/replace.hpp>
+#endif
+#endif
 #pragma GCC target("avx512f")
 #pragma GCC optimize("O3")
 #define int long long
